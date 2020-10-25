@@ -2,7 +2,7 @@ import React from 'react';
 import Invited from './Invited';
 import Accepted from './Accepted';
 
-const SelectedView = (selection: string) => {
+const selectedView = (selection: string) => {
     return (
         <div>
             {selection === 'INVITED' && <Invited />}
@@ -20,7 +20,7 @@ function LeadManagementRoot() {
                 <button onClick={() => setViewSelection('INVITED')}>Invited</button>
                 <button onClick={() => setViewSelection('ACCEPTED')}>Accepted</button>
             </div>
-            {SelectedView(viewSelection)}
+            {selectedView(viewSelection)}
         </div>
     );
 }
