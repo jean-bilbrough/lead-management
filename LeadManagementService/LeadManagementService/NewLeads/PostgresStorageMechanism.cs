@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace LeadManagementService.NewLeads
             //         Category = "Painters",
             //         JobId = 5577421,
             //         Description = "Need to paint 2 aluminium windows and a sliding glass door",
-            //         Price = 62
+            //         LeadPrice = 62
             //     };
             //     var leadDocument = new LeadDocument
             //     {
