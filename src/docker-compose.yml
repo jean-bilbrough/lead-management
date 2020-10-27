@@ -1,0 +1,51 @@
+version: '3.7'
+
+networks:
+  leadmanagement.network.db:
+    driver: bridge
+  leadmanagement.network:
+    driver: bridge
+
+services:
+  postgres_image:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: leanmanagement_db
+    ports:
+      - 5432:5432
+    networks:
+      - leadmanagement.network.db
+
+  leadmanagement.service:
+    image: leadmanagementservice:latest
+    container_name: leadmanagementservice
+    restart: always
+    build:
+      context: ./LeadManagementService
+      dockerfile: LeadManagementService.Api/Dockerfile
+    ports:
+      - "5000:80"
+    networks:
+      - leadmanagement.network.db
+      - leadmanagement.network
+    depends_on:
+      - postgres_image      
+
+  leadmanagement.ui:
+    image: leadmanagementui
+    container_name: leadmanagementui
+    build:
+      context: ./lead-management-ui
+      dockerfile: Dockerfile
+    volumes:
+      - '/lead-management-ui/node_modules'
+    ports:
+      - 3000:3000
+    networks:
+      - leadmanagement.network
+    stdin_open: true
+    depends_on:
+      - leadmanagement.service

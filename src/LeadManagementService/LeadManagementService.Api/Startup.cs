@@ -30,7 +30,7 @@ namespace LeadManagementService
             services.AddDbContext<LeadDbContext>(options =>
             {
                 options.UseNpgsql(
-                    "Host=localhost;Port=5432;Username=bean_user;Password=bean_password;Database=bean_db",
+                    "Host=postgres_image;Port=5432;Username=postgres_user;Password=postgres_password;Database=leanmanagement_db",
                     b => b.MigrationsAssembly("LeadManagementService.Api"));
             });
         }

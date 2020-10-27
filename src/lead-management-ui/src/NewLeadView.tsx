@@ -1,11 +1,12 @@
 import React from 'react';
+import { Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, Box, Typography } from '@material-ui/core';
 import { Card, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, Box, Typography } from '@material-ui/core';
 import NewLead from './NewLead';
 import Button from '@material-ui/core/Button';
 
 const acceptOrDeclineLead = async (acceptOrDecline: string, jobId: number) => {
     console.log('acceptLead called');
-    await fetch(`https://localhost:5001/${acceptOrDecline}?jobid=${jobId}`, {
+    await fetch(`http://localhost:5000/${acceptOrDecline}?jobid=${jobId}`, {
         method: 'PUT'
     })
     .catch(err => {
@@ -17,7 +18,7 @@ const acceptOrDeclineLead = async (acceptOrDecline: string, jobId: number) => {
 
 function NewLeadView(lead: NewLead) {
     return(
-        <Card>
+        <Paper elevation={3}>
             <List>
                 <ListItem>
                     <ListItemAvatar>
@@ -41,7 +42,7 @@ function NewLeadView(lead: NewLead) {
                     <Box ml={3}>{lead.price}</Box>
                 </ListItem>            
             </List>
-        </Card>
+        </Paper>
     );
 }
 

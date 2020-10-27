@@ -4,7 +4,7 @@ import NewLeadView from './NewLeadView';
 import NewLead from './NewLead';
 
 const getNewLeads = async () => {
-    const response = await fetch('https://localhost:5001', {
+    const response = await fetch('http://localhost:5000', {
         method: 'GET'
     })
     .then(contents => { return contents.json(); })

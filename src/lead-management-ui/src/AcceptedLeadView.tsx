@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, Box, Typography } from '@material-ui/core';
+import { Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, Box, Typography } from '@material-ui/core';
 import AcceptedLead from './AcceptedLead';
 
 function AcceptedLeadView(lead: AcceptedLead) {
     return(
-        <Card>
+        <Paper elevation={3}>
             <List>
                 <ListItem>
                     <ListItemAvatar>
@@ -28,7 +28,7 @@ function AcceptedLeadView(lead: AcceptedLead) {
                     <Typography variant='body2' display='block' gutterBottom>{lead.description}</Typography>
                 </ListItem>
             </List>
-        </Card>
+        </Paper>
 
 
     );

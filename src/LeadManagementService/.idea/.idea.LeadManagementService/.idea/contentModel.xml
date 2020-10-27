@@ -20,6 +20,7 @@
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Dockerfile" t="Include" />
         <e p="LeadManagementService.Api.csproj" t="IncludeRecursive" />
         <e p="Migrations" t="Include">
           <e p="20201027015252_CreateLeadDocuments.cs" t="Include" />

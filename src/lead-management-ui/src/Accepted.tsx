@@ -4,7 +4,7 @@ import AcceptedLeadView from './AcceptedLeadView';
 import AcceptedLead from './AcceptedLead';
 
 const getAcceptedLeads = async () => {
-    const response = await fetch('https://localhost:5001/accepted', {
+    const response = await fetch('http://localhost:5000/accepted', {
         method: 'GET'
     })
     .then(contents => { return contents.json(); })
