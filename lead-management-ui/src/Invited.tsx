@@ -1,6 +1,7 @@
 import React from 'react';
+import { Grid } from '@material-ui/core';
 import NewLeadView from './NewLeadView';
-import Lead from './Lead';
+import NewLead from './NewLead';
 
 const getNewLeads = async () => {
     const response = await fetch('https://localhost:5001', {
@@ -21,9 +22,9 @@ function Invited() {
     }, []);
 
     return (
-        <div>
-            {!leads || leads.map(function(lead: Lead){return <div key={lead.jobId}>{NewLeadView(lead)}</div>})}
-        </div>
+        <Grid container spacing={5}>
+            {!leads || leads.map(function(lead: NewLead){return <Grid key={lead.jobId} item>{NewLeadView(lead)}</Grid>})}
+        </Grid>
     );
 }
 

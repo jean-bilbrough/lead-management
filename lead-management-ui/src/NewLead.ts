@@ -1,4 +1,4 @@
-export default class Lead {
+export default class NewLead {
     constructor(
         public contactFirstName: string,
         public dateCreated: string,

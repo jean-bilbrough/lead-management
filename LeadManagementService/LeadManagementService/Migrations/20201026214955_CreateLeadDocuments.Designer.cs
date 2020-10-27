@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LeadManagementService.Migrations
 {
     [DbContext(typeof(LeadDbContext))]
-    [Migration("20201026034241_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201026214955_CreateLeadDocuments")]
+    partial class CreateLeadDocuments
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

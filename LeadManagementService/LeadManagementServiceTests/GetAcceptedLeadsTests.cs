@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
 using LeadManagementService.NewLeads;
@@ -11,42 +10,34 @@ using Xunit;
 
 namespace LeadManagementServiceTests
 {
-    public class GetNewLeadsTests
+    public class GetAcceptedLeadsTests
     {
-        [Fact(Skip="local test server not working correctly yet")]
-        public async Task Get_New_Leads_Should_Be_Successful()
-        {
-            using var testServer = LocalTestServer.CreateTestServer(services => { });
-            var httpClient = testServer.CreateClient();
-            var request = new HttpRequestMessage(HttpMethod.Get, "/");
-            
-            var response = await httpClient.SendAsync(request);
-            
-            Assert.True(response.IsSuccessStatusCode);
-        }
-        
         [Fact]
-        public async Task Get_New_Leads_Should_Return_New_Leads()
+        public async Task Get_Accepted_Leads_Should_Return_Accepted_Leads()
         {
             const string expectedJson = 
                 "{" + 
-                "\"id\":\"newleads\"," +
+                "\"id\":\"acceptedleads\"," +
                 "\"leads\":[{" +
-                "\"contactFirstName\":\"Bill\"," +
+                "\"contactFullName\":\"Bill Hunter\"," +
                 "\"dateCreated\":\"January 4 @ 2:37 pm\"," +
                 "\"suburb\":\"Yanderra 2574\"," +
                 "\"category\":\"Painters\"," +
                 "\"jobId\":5577421," +
-                "\"description\":\"Need to paint 2 aluminium windows and a sliding glass door\"," +
-                "\"price\":\"$62.00 Lead Invitation\"" +
+                "\"price\":\"$62.00 Lead Invitation\"," +
+                "\"contactPhoneNumber\":\"0411222333\"," +
+                "\"contactEmail\":\"bill@myorg.com\"," +
+                "\"description\":\"Need to paint 2 aluminium windows and a sliding glass door\"" +
                 "},{" +
-                "\"contactFirstName\":\"Craig\"," +
+                "\"contactFullName\":\"Craig Barry\"," +
                 "\"dateCreated\":\"January 4 @ 1:15 pm\"," +
                 "\"suburb\":\"Woolooware 2230\"," +
                 "\"category\":\"Interior Painters\"," +
                 "\"jobId\":5588872," +
-                "\"description\":\"interior walls 3 colours\"," +
-                "\"price\":\"$49.00 Lead Invitation\"" +
+                "\"price\":\"$49.00 Lead Invitation\"," +
+                "\"contactPhoneNumber\":\"0411444555\"," +
+                "\"contactEmail\":\"craig@anotherorg.com\"," +
+                "\"description\":\"interior walls 3 colours\"" +
                 "}]" +
                 "}";
             
@@ -59,92 +50,39 @@ namespace LeadManagementServiceTests
                     Lead = new Lead
                     {
                         ContactFirstName = "Bill",
+                        ContactLastName = "Hunter",
+                        ContactPhoneNumber = "0411222333",
+                        ContactEmail = "bill@myorg.com",
                         DateCreated = new DateTime(2020, 1, 4, 14, 37, 0),
                         Suburb = "Yanderra 2574",
                         Category = "Painters",
                         JobId = 5577421,
                         Description = "Need to paint 2 aluminium windows and a sliding glass door",
                         LeadPrice = 62,
-                        Status = LeadStatus.New
+                        AcceptedPrice = 62,
+                        Status = LeadStatus.Accepted
                     }},
                 new LeadDocument
                 {
                     Id = 2,
                     Lead = new Lead{
                         ContactFirstName = "Craig",
+                        ContactLastName = "Barry",
+                        ContactPhoneNumber = "0411444555",
+                        ContactEmail = "craig@anotherorg.com",
                         DateCreated = new DateTime(2020, 1, 4, 13, 15, 0),
                         Suburb = "Woolooware 2230",
                         Category = "Interior Painters",
                         JobId = 5588872,
                         Description = "interior walls 3 colours",
                         LeadPrice = 49,
-                        Status = LeadStatus.New
-                    }}});
-            
-            var controller = new NewLeadsController(new LeadsRepository(storage));
-
-            var result = await controller.GetNewLeads();
-
-            result.Should().NotBeNull();
-            result.GetType().Should().Be(typeof(OkObjectResult));
-            ((OkObjectResult) result).StatusCode.Should().Be(200);
-            JsonConvert.SerializeObject(((OkObjectResult) result).Value, new JsonSerializerSettings
-            {
-                ContractResolver = new DefaultContractResolver{ NamingStrategy = new CamelCaseNamingStrategy() },
-            }).Should().Be(expectedJson);
-        }
-        
-        [Fact]
-        public async Task Get_New_Leads_Should_Not_Return_Accepted_Leads()
-        {
-            const string expectedJson = 
-                "{" + 
-                "\"id\":\"newleads\"," +
-                "\"leads\":[{" +
-                "\"contactFirstName\":\"Bill\"," +
-                "\"dateCreated\":\"January 4 @ 2:37 pm\"," +
-                "\"suburb\":\"Yanderra 2574\"," +
-                "\"category\":\"Painters\"," +
-                "\"jobId\":5577421," +
-                "\"description\":\"Need to paint 2 aluminium windows and a sliding glass door\"," +
-                "\"price\":\"$62.00 Lead Invitation\"" +
-                "}]" +
-                "}";
-            
-            var storage = new InMemoryStorageMechanism();
-            storage.Add(new List<LeadDocument>
-            {
-                new LeadDocument
-                {
-                    Id = 1,
-                    Lead = new Lead
-                    {
-                        ContactFirstName = "Bill",
-                        DateCreated = new DateTime(2020, 1, 4, 14, 37, 0),
-                        Suburb = "Yanderra 2574",
-                        Category = "Painters",
-                        JobId = 5577421,
-                        Description = "Need to paint 2 aluminium windows and a sliding glass door",
-                        LeadPrice = 62,
-                        Status = LeadStatus.New
-                    }},
-                new LeadDocument
-                {
-                    Id = 2,
-                    Lead = new Lead{
-                        ContactFirstName = "Craig",
-                        DateCreated = new DateTime(2020, 1, 4, 13, 15, 0),
-                        Suburb = "Woolooware 2230",
-                        Category = "Interior Painters",
-                        JobId = 5588872,
-                        Description = "interior walls 3 colours",
-                        LeadPrice = 49,
+                        AcceptedPrice = 49,
                         Status = LeadStatus.Accepted
                     }}});
             
             var controller = new NewLeadsController(new LeadsRepository(storage));
 
-            var result = await controller.GetNewLeads();
+            var result = await controller.GetAcceptedLeads();
 
             result.Should().NotBeNull();
             result.GetType().Should().Be(typeof(OkObjectResult));
@@ -156,19 +94,21 @@ namespace LeadManagementServiceTests
         }
         
         [Fact]
-        public async Task Get_New_Leads_Should_Not_Return_Declined_Leads()
+        public async Task Get_Accepted_Leads_Should_Not_Return_New_Leads()
         {
             const string expectedJson = 
                 "{" + 
-                "\"id\":\"newleads\"," +
+                "\"id\":\"acceptedleads\"," +
                 "\"leads\":[{" +
-                "\"contactFirstName\":\"Craig\"," +
-                "\"dateCreated\":\"January 4 @ 1:15 pm\"," +
-                "\"suburb\":\"Woolooware 2230\"," +
-                "\"category\":\"Interior Painters\"," +
-                "\"jobId\":5588872," +
-                "\"description\":\"interior walls 3 colours\"," +
-                "\"price\":\"$49.00 Lead Invitation\"" +
+                "\"contactFullName\":\"Bill Hunter\"," +
+                "\"dateCreated\":\"January 4 @ 2:37 pm\"," +
+                "\"suburb\":\"Yanderra 2574\"," +
+                "\"category\":\"Painters\"," +
+                "\"jobId\":5577421," +
+                "\"price\":\"$62.00 Lead Invitation\"," +
+                "\"contactPhoneNumber\":\"0411222333\"," +
+                "\"contactEmail\":\"bill@myorg.com\"," +
+                "\"description\":\"Need to paint 2 aluminium windows and a sliding glass door\"" +
                 "}]" +
                 "}";
             
@@ -181,6 +121,79 @@ namespace LeadManagementServiceTests
                     Lead = new Lead
                     {
                         ContactFirstName = "Bill",
+                        ContactLastName = "Hunter",
+                        ContactPhoneNumber = "0411222333",
+                        ContactEmail = "bill@myorg.com",
+                        DateCreated = new DateTime(2020, 1, 4, 14, 37, 0),
+                        Suburb = "Yanderra 2574",
+                        Category = "Painters",
+                        JobId = 5577421,
+                        Description = "Need to paint 2 aluminium windows and a sliding glass door",
+                        LeadPrice = 62,
+                        AcceptedPrice = 62,
+                        Status = LeadStatus.Accepted
+                    }},
+                new LeadDocument
+                {
+                    Id = 2,
+                    Lead = new Lead{
+                        ContactFirstName = "Craig",
+                        ContactLastName = "Barry",
+                        ContactPhoneNumber = "0411444555",
+                        ContactEmail = "craig@anotherorg.com",
+                        DateCreated = new DateTime(2020, 1, 4, 13, 15, 0),
+                        Suburb = "Woolooware 2230",
+                        Category = "Interior Painters",
+                        JobId = 5588872,
+                        Description = "interior walls 3 colours",
+                        LeadPrice = 49,
+                        Status = LeadStatus.New
+                    }}});
+            
+            var controller = new NewLeadsController(new LeadsRepository(storage));
+
+            var result = await controller.GetAcceptedLeads();
+
+            result.Should().NotBeNull();
+            result.GetType().Should().Be(typeof(OkObjectResult));
+            ((OkObjectResult) result).StatusCode.Should().Be(200);
+            JsonConvert.SerializeObject(((OkObjectResult) result).Value, new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver{ NamingStrategy = new CamelCaseNamingStrategy() },
+            }).Should().Be(expectedJson);
+        }
+        
+        [Fact]
+        public async Task Get_Accepted_Leads_Should_Not_Return_Declined_Leads()
+        {
+            const string expectedJson = 
+                "{" + 
+                "\"id\":\"acceptedleads\"," +
+                "\"leads\":[{" +
+                "\"contactFullName\":\"Craig Barry\"," +
+                "\"dateCreated\":\"January 4 @ 1:15 pm\"," +
+                "\"suburb\":\"Woolooware 2230\"," +
+                "\"category\":\"Interior Painters\"," +
+                "\"jobId\":5588872," +
+                "\"price\":\"$49.00 Lead Invitation\"," +
+                "\"contactPhoneNumber\":\"0411444555\"," +
+                "\"contactEmail\":\"craig@anotherorg.com\"," +
+                "\"description\":\"interior walls 3 colours\"" +
+                "}]" +
+                "}";
+            
+            var storage = new InMemoryStorageMechanism();
+            storage.Add(new List<LeadDocument>
+            {
+                new LeadDocument
+                {
+                    Id = 1,
+                    Lead = new Lead
+                    {
+                        ContactFirstName = "Bill",
+                        ContactLastName = "Hunter",
+                        ContactPhoneNumber = "0411222333",
+                        ContactEmail = "bill@myorg.com",
                         DateCreated = new DateTime(2020, 1, 4, 14, 37, 0),
                         Suburb = "Yanderra 2574",
                         Category = "Painters",
@@ -194,18 +207,76 @@ namespace LeadManagementServiceTests
                     Id = 2,
                     Lead = new Lead{
                         ContactFirstName = "Craig",
+                        ContactLastName = "Barry",
+                        ContactPhoneNumber = "0411444555",
+                        ContactEmail = "craig@anotherorg.com",
                         DateCreated = new DateTime(2020, 1, 4, 13, 15, 0),
                         Suburb = "Woolooware 2230",
                         Category = "Interior Painters",
                         JobId = 5588872,
                         Description = "interior walls 3 colours",
                         LeadPrice = 49,
+                        AcceptedPrice = 49,
+                        Status = LeadStatus.Accepted
+                    }}});
+            
+            var controller = new NewLeadsController(new LeadsRepository(storage));
+
+            var result = await controller.GetAcceptedLeads();
+
+            result.Should().NotBeNull();
+            result.GetType().Should().Be(typeof(OkObjectResult));
+            ((OkObjectResult) result).StatusCode.Should().Be(200);
+            JsonConvert.SerializeObject(((OkObjectResult) result).Value, new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver{ NamingStrategy = new CamelCaseNamingStrategy() },
+            }).Should().Be(expectedJson);
+        }
+        
+        [Fact]
+        public async Task Get_Accepted_Leads_Should_Display_Accepted_Price()
+        {
+            const string expectedJson = 
+                "{" + 
+                "\"id\":\"acceptedleads\"," +
+                "\"leads\":[{" +
+                "\"contactFullName\":\"Craig Barry\"," +
+                "\"dateCreated\":\"January 4 @ 1:15 pm\"," +
+                "\"suburb\":\"Woolooware 2230\"," +
+                "\"category\":\"Interior Painters\"," +
+                "\"jobId\":5588872," +
+                "\"price\":\"$495.00 Lead Invitation\"," +
+                "\"contactPhoneNumber\":\"0411444555\"," +
+                "\"contactEmail\":\"craig@anotherorg.com\"," +
+                "\"description\":\"interior walls 3 colours\"" +
+                "}]" +
+                "}";
+            
+            var storage = new InMemoryStorageMechanism();
+            storage.Add(new List<LeadDocument>
+            {
+                new LeadDocument
+                {
+                    Id = 2,
+                    Lead = new Lead{
+                        ContactFirstName = "Craig",
+                        ContactLastName = "Barry",
+                        ContactPhoneNumber = "0411444555",
+                        ContactEmail = "craig@anotherorg.com",
+                        DateCreated = new DateTime(2020, 1, 4, 13, 15, 0),
+                        Suburb = "Woolooware 2230",
+                        Category = "Interior Painters",
+                        JobId = 5588872,
+                        Description = "interior walls 3 colours",
+                        LeadPrice = 550,
                         Status = LeadStatus.New
                     }}});
             
             var controller = new NewLeadsController(new LeadsRepository(storage));
 
-            var result = await controller.GetNewLeads();
+            await controller.AcceptLead(5588872);
+
+            var result = await controller.GetAcceptedLeads();
 
             result.Should().NotBeNull();
             result.GetType().Should().Be(typeof(OkObjectResult));

@@ -1,27 +1,32 @@
 import React from 'react';
+import { Grid, Tabs, Tab } from '@material-ui/core';
 import Invited from './Invited';
 import Accepted from './Accepted';
 
-const selectedView = (selection: string) => {
+const selectedView = (selection: number) => {
     return (
         <div>
-            {selection === 'INVITED' && <Invited />}
-            {selection === 'ACCEPTED' && <Accepted />}
+            {selection === 0 && <Invited />}
+            {selection === 1 && <Accepted />}
         </div>
     );
 };
 
 function LeadManagementRoot() {
-    const [viewSelection, setViewSelection] = React.useState('INVITED');
+    const [viewSelection, setViewSelection] = React.useState(0);
+
+    const handleChange = (event: any, newValue: any) => {
+        setViewSelection(newValue);
+    }
 
     return (
-        <div>
-            <div>
-                <button onClick={() => setViewSelection('INVITED')}>Invited</button>
-                <button onClick={() => setViewSelection('ACCEPTED')}>Accepted</button>
-            </div>
+        <Grid container justify='center' alignItems='flex-start'>
+            <Tabs value={viewSelection} onChange={handleChange} >
+                <Tab label='Invited' />
+                <Tab label='Accepted' />
+            </Tabs>
             {selectedView(viewSelection)}
-        </div>
+        </Grid>
     );
 }
 

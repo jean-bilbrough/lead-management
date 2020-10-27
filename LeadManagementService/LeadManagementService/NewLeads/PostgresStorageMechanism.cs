@@ -17,31 +17,7 @@ namespace LeadManagementService.NewLeads
         
         public async Task<IEnumerable<LeadDocument>> GetLeadDocuments()
         {
-            // try
-            // {
-            //     var lead = new Lead
-            //     {
-            //         ContactFirstName = "Bill",
-            //         DateCreated = new DateTime(2020, 1, 4, 14, 37, 0),
-            //         Suburb = "Yanderra 2574",
-            //         Category = "Painters",
-            //         JobId = 5577421,
-            //         Description = "Need to paint 2 aluminium windows and a sliding glass door",
-            //         LeadPrice = 62
-            //     };
-            //     var leadDocument = new LeadDocument
-            //     {
-            //         Lead = lead
-            //     };
-            //     _dbContext.LeadDocuments.Add(leadDocument);
-            //     await _dbContext.SaveChangesAsync();
-            // }
-            // catch (Exception e)
-            // {
-            //     Console.WriteLine(e);
-            //     throw;
-            // }
-            
+            // await InsertData();
             
             return await _dbContext.LeadDocuments.ToListAsync();
         }
@@ -55,6 +31,40 @@ namespace LeadManagementService.NewLeads
         { 
             _dbContext.LeadDocuments.Update(leadDocument);
             await _dbContext.SaveChangesAsync();
+        }
+
+        private async Task InsertData()
+        {
+            try
+            {
+                var lead = new Lead
+                {
+                    ContactFirstName = "Bill",
+                    ContactLastName = "Craig",
+                    ContactPhoneNumber = "0411222333",
+                    ContactEmail = "craig.barry@theorg.com",
+                    DateCreated = new DateTime(2020, 1, 4, 14, 37, 0),
+                    Suburb = "Yanderra 2574",
+                    Category = "Painters",
+                    JobId = 0,
+                    Description = "Need to paint 2 aluminium windows and a sliding glass door",
+                    LeadPrice = 62
+                };
+                var leadDocument = new LeadDocument
+                {
+                    Lead = lead
+                };
+                _dbContext.LeadDocuments.Add(leadDocument);
+                await _dbContext.SaveChangesAsync();
+                leadDocument.Lead.JobId = leadDocument.Id;
+                _dbContext.Update(leadDocument);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

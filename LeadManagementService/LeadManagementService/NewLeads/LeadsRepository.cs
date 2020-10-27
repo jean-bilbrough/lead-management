@@ -34,5 +34,17 @@ namespace LeadManagementService.NewLeads
         {
             await _storageMechanism.SaveLeadDocument(leadDocument);
         }
+
+        public async Task<IEnumerable<GetAcceptedLeadQueryResponse>> GetAcceptedLeads()
+        {
+            var results = await _storageMechanism.GetLeadDocuments();
+            var leads = new List<GetAcceptedLeadQueryResponse>();
+            foreach (var result in results.Where(r => r.Lead.Status == LeadStatus.Accepted))
+            {
+                leads.Add(GetAcceptedLeadQueryResponse.FromLead(result.Lead));
+            }
+
+            return leads;
+        }
     }
 }

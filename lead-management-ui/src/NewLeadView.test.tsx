@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import NewLeadView from './NewLeadView';
-import Lead from './Lead';
+import NewLead from './NewLead';
 
-const lead = new Lead(
+const lead = new NewLead(
     'Bill',
     'January 4 @ 2:37 pm',
     'Yanderra 2574',

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace LeadManagementService.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class CreateLeadDocuments : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

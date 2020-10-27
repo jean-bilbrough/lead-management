@@ -16,11 +16,19 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="LeadManagementService.csproj" t="IncludeRecursive" />
         <e p="Migrations" t="Include">
-          <e p="20201026034241_InitialCreate.cs" t="Include" />
-          <e p="20201026034241_InitialCreate.Designer.cs" t="Include" />
+          <e p="20201026214955_CreateLeadDocuments.cs" t="Include" />
+          <e p="20201026214955_CreateLeadDocuments.Designer.cs" t="Include" />
           <e p="LeadDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="NewLeads" t="Include">
+          <e p="AcceptLeadQuery.cs" t="Include" />
+          <e p="AcceptLeadQueryHandler.cs" t="Include" />
+          <e p="DeclineLeadQuery.cs" t="Include" />
+          <e p="DeclineLeadQueryHandler.cs" t="Include" />
+          <e p="GetAcceptedLeadQueryResponse.cs" t="Include" />
+          <e p="GetAcceptedLeadsQuery.cs" t="Include" />
+          <e p="GetAcceptedLeadsQueryHandler.cs" t="Include" />
+          <e p="GetAcceptedLeadsQueryResponse.cs" t="Include" />
           <e p="GetNewLeadQueryResponse.cs" t="Include" />
           <e p="GetNewLeadsQuery.cs" t="Include" />
           <e p="GetNewLeadsQueryHandler.cs" t="Include" />
@@ -53,8 +61,10 @@
         <e p="AcceptLeadTests.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="DeclineLeadTests.cs" t="Include" />
+        <e p="GetAcceptedLeadsTests.cs" t="Include" />
         <e p="GetNewLeadsTests.cs" t="Include" />
         <e p="LeadManagementServiceTests.csproj" t="IncludeRecursive" />
+        <e p="LeadTests.cs" t="Include" />
         <e p="LocalTestServer.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

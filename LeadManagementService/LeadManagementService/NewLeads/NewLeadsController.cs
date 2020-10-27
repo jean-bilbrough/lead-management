@@ -26,7 +26,7 @@ namespace LeadManagementService.NewLeads
             var getNewLeadsQueryResponse = await getNewLeadsQueryHandler.Handle(getNewLeadsQuery);
 
             return Ok(getNewLeadsQueryResponse);
-        }
+        }          
 
         [HttpPut]
         [Route("/accept")]
@@ -47,63 +47,17 @@ namespace LeadManagementService.NewLeads
             await declineLeadQueryHandler.Handle(declineLeadQuery);
             return await Task.FromResult(Ok());
         }
-    }
-
-    public class DeclineLeadQuery
-    {
-        public int JobId { get; }
-
-        public DeclineLeadQuery(int jobId)
+        
+        [HttpGet]
+        [Route("/accepted")]
+        [ProducesResponseType(typeof(GetAcceptedLeadsQueryResponse), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetAcceptedLeads()
         {
-            JobId = jobId;
-        }
-    }
-    
-    public class DeclineLeadQueryHandler
-    {
-        private readonly LeadsRepository _leadsRepository;
+            var getAcceptedLeadsQuery = new GetAcceptedLeadsQuery();
+            var getAcceptedLeadsQueryHandler = new GetAcceptedLeadsQueryHandler(_leadsRepository);
+            var getAcceptedLeadsQueryResponse = await getAcceptedLeadsQueryHandler.Handle(getAcceptedLeadsQuery);
 
-        public DeclineLeadQueryHandler(LeadsRepository leadsRepository)
-        {
-            _leadsRepository = leadsRepository;
-        }
-
-        public async Task Handle(DeclineLeadQuery declineLeadQuery)
-        {
-            var leadDocument = await _leadsRepository.GetLeadDocument(declineLeadQuery.JobId);
-
-            leadDocument.Lead.Decline();
-
-            await _leadsRepository.Save(leadDocument);
-        }
-    }
-
-    public class AcceptLeadQueryHandler
-    {
-        private readonly LeadsRepository _leadsRepository;
-
-        public AcceptLeadQueryHandler(LeadsRepository leadsRepository)
-        {
-            _leadsRepository = leadsRepository;
-        }
-
-        public async Task Handle(AcceptLeadQuery acceptLeadQuery)
-        {
-            var leadDocument = await _leadsRepository.GetLeadDocument(acceptLeadQuery.JobId);
-
-            leadDocument.Lead.Accept();
-
-            await _leadsRepository.Save(leadDocument);
-        }
-    }
-
-    public class AcceptLeadQuery
-    {
-        public int JobId { get; }
-
-        public AcceptLeadQuery(int jobId)
-        {
-            JobId = jobId;
-        }
+            return Ok(getAcceptedLeadsQueryResponse);
+        } 
     }
 }

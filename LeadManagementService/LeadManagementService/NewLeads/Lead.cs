@@ -8,6 +8,9 @@ namespace LeadManagementService.NewLeads
         private const decimal DiscountPercent = (decimal) 0.1;
         
         public string ContactFirstName { get; set; }
+        public string ContactLastName { get; set; }
+        public string ContactPhoneNumber { get; set; }
+        public string ContactEmail { get; set; }
         public DateTime DateCreated { get; set; }
         public string Suburb { get; set; }
         public string Category { get; set; }
@@ -16,11 +19,13 @@ namespace LeadManagementService.NewLeads
         public decimal LeadPrice { get; set; }
         public LeadStatus Status { get; set;  }
         public decimal AcceptedPrice { get; set; }
-
+        
         public void Accept()
         {
             Status = LeadStatus.Accepted;
-            AcceptedPrice = LeadPrice > DiscountThreshold ? LeadPrice * DiscountPercent : LeadPrice;
+            AcceptedPrice = LeadPrice > DiscountThreshold 
+                ? Math.Round(LeadPrice - LeadPrice * DiscountPercent, 2, MidpointRounding.ToZero)
+                : LeadPrice;
             // todo: raise LeadAcceptedEvent
         }
 
