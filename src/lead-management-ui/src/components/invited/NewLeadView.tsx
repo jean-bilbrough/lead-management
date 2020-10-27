@@ -3,7 +3,7 @@ import { Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, B
 import PlaceOutlined from '@material-ui/icons/PlaceOutlined';
 import CardTravelOutlined from '@material-ui/icons/CardTravelOutlined';
 import { WithStyles } from '@material-ui/core/styles';
-import styles from './styles';
+import styles from '../../styles';
 import NewLead from './NewLead';
 
 const acceptOrDeclineLead = async (acceptOrDecline: string, jobId: number) => {

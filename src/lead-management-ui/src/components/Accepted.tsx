@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { WithStyles } from '@material-ui/core/styles';
-import styles from './styles';
+import styles from '../styles';
 import AcceptedLeadView from './AcceptedLeadView';
-import AcceptedLead from './AcceptedLead';
+import AcceptedLead from './accepted/AcceptedLead';
 
 const getAcceptedLeads = async () => {
     const response = await fetch('http://localhost:5000/accepted', {

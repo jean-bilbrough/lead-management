@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid, Tabs, Tab } from '@material-ui/core';
 import { WithStyles } from '@material-ui/core/styles';
-import styles from './styles';
-import Invited from './Invited';
-import Accepted from './Accepted';
+import styles from '../styles';
+import Invited from './invited/Invited';
+import Accepted from './accepted/Accepted';
 
 const selectedView = (selection: number, props: WithStyles<typeof styles>) => {
     return (

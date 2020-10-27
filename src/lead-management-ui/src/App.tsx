@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '@material-ui/core';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 import styles from './styles';
-import LeadManagementRoot from './LeadManagementRoot';
+import LeadManagementRoot from './components/LeadManagementRoot';
 
 import {
   createMuiTheme,

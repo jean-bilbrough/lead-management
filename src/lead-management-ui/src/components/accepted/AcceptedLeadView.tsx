@@ -5,7 +5,7 @@ import CardTravelOutlined from '@material-ui/icons/CardTravelOutlined';
 import PhoneOutlined from '@material-ui/icons/PhoneOutlined';
 import EmailOutlined from '@material-ui/icons/EmailOutlined';
 import { WithStyles } from '@material-ui/core/styles';
-import styles from './styles';
+import styles from '../../styles';
 import AcceptedLead from './AcceptedLead';
 
 function AcceptedLeadView(lead: AcceptedLead, props: WithStyles<typeof styles>) {
