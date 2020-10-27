@@ -1,6 +1,7 @@
 import React from 'react';
 import { Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, Box, Typography } from '@material-ui/core';
-import { Card, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, Box, Typography } from '@material-ui/core';
+import PlaceOutlined from '@material-ui/icons/PlaceOutlined';
+import CardTravelOutlined from '@material-ui/icons/CardTravelOutlined';
 import NewLead from './NewLead';
 import Button from '@material-ui/core/Button';
 
@@ -28,9 +29,11 @@ function NewLeadView(lead: NewLead) {
                     <Divider />
                 </ListItem>
                 <ListItem>
-                    <Box mr={3}>{lead.suburb}</Box>
-                    <Box mr={3}>{lead.category}</Box>
-                    <Box mr={3}>Job ID: {lead.jobId}</Box>
+                    <PlaceOutlined color='inherit'/>
+                    <Box mr={3}><Typography>{lead.suburb}</Typography></Box>
+                    <CardTravelOutlined color='inherit' />
+                    <Box mr={3}><Typography>{lead.category}</Typography></Box>
+                    <Box mr={3}><Typography>Job ID: {lead.jobId}</Typography></Box>
                 </ListItem>
                 <Divider light/>
                 <ListItem>

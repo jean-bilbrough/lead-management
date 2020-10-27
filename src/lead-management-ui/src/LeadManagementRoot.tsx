@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Tabs, Tab, Paper } from '@material-ui/core';
+import { Grid, Tabs, Tab } from '@material-ui/core';
 import Invited from './Invited';
 import Accepted from './Accepted';
 
@@ -20,8 +20,8 @@ function LeadManagementRoot() {
     }
 
     return (
-        <Grid container justify='center' >
-            <Tabs value={viewSelection} onChange={handleChange}>
+        <Grid container={true} justify='center' alignContent='stretch' direction='column' >
+            <Tabs value={viewSelection} onChange={handleChange} variant='fullWidth'>
                 <Tab label='Invited' />
                 <Tab label='Accepted' />
             </Tabs>

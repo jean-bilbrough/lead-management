@@ -1,5 +1,9 @@
 import React from 'react';
 import { Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, Box, Typography } from '@material-ui/core';
+import PlaceOutlined from '@material-ui/icons/PlaceOutlined';
+import CardTravelOutlined from '@material-ui/icons/CardTravelOutlined';
+import PhoneOutlined from '@material-ui/icons/PhoneOutlined';
+import EmailOutlined from '@material-ui/icons/EmailOutlined';
 import AcceptedLead from './AcceptedLead';
 
 function AcceptedLeadView(lead: AcceptedLead) {
@@ -14,14 +18,18 @@ function AcceptedLeadView(lead: AcceptedLead) {
                     <Divider />
                 </ListItem>
                 <ListItem>
-                    <Box mr={3}>{lead.suburb}</Box>
-                    <Box mr={3}>{lead.category}</Box>
-                    <Box mr={3}>Job ID: {lead.jobId}</Box>
-                    <Box mr={3}>{lead.price}</Box>
+                    <PlaceOutlined color='inherit'/>
+                    <Box mr={3}><Typography>{lead.suburb}</Typography></Box>
+                    <CardTravelOutlined color='inherit'/>
+                    <Box mr={3}><Typography>{lead.category}</Typography></Box>
+                    <Box mr={3}><Typography>Job ID: {lead.jobId}</Typography></Box>
+                    <Box mr={3}><Typography>{lead.price}</Typography></Box>
                 </ListItem>
                 <Divider light/>                
                 <ListItem>
+                    <PhoneOutlined color='inherit'/>
                     <Box mr={3}>{lead.contactPhoneNumber}</Box>
+                    <EmailOutlined color='inherit'/>
                     <Box mr={3}>{lead.contactEmail}</Box>
                 </ListItem>
                 <ListItem>
@@ -29,8 +37,6 @@ function AcceptedLeadView(lead: AcceptedLead) {
                 </ListItem>
             </List>
         </Paper>
-
-
     );
 }
 

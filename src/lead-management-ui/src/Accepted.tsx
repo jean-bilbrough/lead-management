@@ -22,7 +22,7 @@ function Accepted() {
     }, []);
 
     return (
-        <Grid container spacing={5}>
+        <Grid container={true} spacing={5} direction='column' alignContent='stretch'>
             {!leads || leads.map(function(lead: AcceptedLead){return <Grid key={lead.jobId} item>{AcceptedLeadView(lead)}</Grid>})}
         </Grid>
     );

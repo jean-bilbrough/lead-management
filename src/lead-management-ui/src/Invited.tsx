@@ -22,7 +22,7 @@ function Invited() {
     }, []);
 
     return (
-        <Grid container spacing={5}>
+        <Grid container={true} spacing={5} direction='column' alignContent='stretch'>
             {!leads || leads.map(function(lead: NewLead){return <Grid key={lead.jobId} item>{NewLeadView(lead)}</Grid>})}
         </Grid>
     );

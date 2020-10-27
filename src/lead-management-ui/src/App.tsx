@@ -3,7 +3,7 @@ import { Container } from '@material-ui/core';
 import LeadManagementRoot from './LeadManagementRoot';
 
 function App() {  
-  return(<Container maxWidth='sm'><LeadManagementRoot /></Container>);
+  return(<Container maxWidth='lg'><LeadManagementRoot /></Container>);
 }
 
 export default App;
