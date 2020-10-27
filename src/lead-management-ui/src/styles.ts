@@ -5,7 +5,8 @@ const styles = createStyles({
     root : {
         color: grey[600],
         backgroundColor: grey[200],
-        padding: '10, 20, 10, 20'
+        padding: '10, 20, 10, 20',
+        height: '100%'
     },
     tab: {
         backgroundColor: '#ffffff',
@@ -31,8 +32,8 @@ const styles = createStyles({
         backgroundColor: grey[200]
     },
     contactInformation: {
-        color: orange[800],
-        fontWeight: 'heavy',
+        color: orange[600],
+        fontWeight: 'bold',
     }
   });
 
