@@ -22,7 +22,7 @@ namespace LeadManagementService.Queries
                 Category = lead.Category,
                 JobId = lead.JobId,
                 Description = lead.Description,
-                Price = $"${lead.LeadPrice:F} Lead Invitation"
+                Price = $"${lead.LeadPrice:0.00} Lead Invitation"
             };
 
             return getNewLeadQueryResponse;

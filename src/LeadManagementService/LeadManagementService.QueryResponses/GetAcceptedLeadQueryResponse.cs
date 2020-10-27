@@ -23,7 +23,7 @@ namespace LeadManagementService.Queries
                 Suburb = lead.Suburb,
                 Category = lead.Category,
                 JobId = lead.JobId,
-                Price = $"${lead.AcceptedPrice:F} Lead Invitation",
+                Price = $"${lead.AcceptedPrice:0.00} Lead Invitation",
                 ContactPhoneNumber = lead.ContactPhoneNumber,
                 ContactEmail= lead.ContactEmail,
                 Description = lead.Description
