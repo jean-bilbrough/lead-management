@@ -1,5 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core/styles';
+import styles from './styles';
 import NewLeadView from './NewLeadView';
 import NewLead from './NewLead';
 
@@ -15,7 +17,7 @@ const getNewLeads = async () => {
     return response;
 };
 
-function Invited() {
+function Invited(props: WithStyles<typeof styles>) {
     const [leads, setLeads] = React.useState([]);
     React.useEffect(() => {
         getNewLeads().then(r => r.leads).then(setLeads);
@@ -23,7 +25,7 @@ function Invited() {
 
     return (
         <Grid container={true} spacing={5} direction='column' alignContent='stretch'>
-            {!leads || leads.map(function(lead: NewLead){return <Grid key={lead.jobId} item>{NewLeadView(lead)}</Grid>})}
+            {!leads || leads.map(function(lead: NewLead){return <Grid key={lead.jobId} item>{NewLeadView(lead, props)}</Grid>})}
         </Grid>
     );
 }

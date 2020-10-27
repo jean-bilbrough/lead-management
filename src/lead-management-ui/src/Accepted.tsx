@@ -1,5 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core/styles';
+import styles from './styles';
 import AcceptedLeadView from './AcceptedLeadView';
 import AcceptedLead from './AcceptedLead';
 
@@ -15,15 +17,15 @@ const getAcceptedLeads = async () => {
     return response;
 };
 
-function Accepted() {
+function Accepted(props: WithStyles<typeof styles>) {
     const [leads, setLeads] = React.useState([]);
     React.useEffect(() => {
         getAcceptedLeads().then(r => r.leads).then(setLeads);
-    }, []);
+    }, []);    
 
     return (
         <Grid container={true} spacing={5} direction='column' alignContent='stretch'>
-            {!leads || leads.map(function(lead: AcceptedLead){return <Grid key={lead.jobId} item>{AcceptedLeadView(lead)}</Grid>})}
+            {!leads || leads.map(function(lead: AcceptedLead){return <Grid key={lead.jobId} item>{AcceptedLeadView(lead, props)}</Grid>})}
         </Grid>
     );
 }

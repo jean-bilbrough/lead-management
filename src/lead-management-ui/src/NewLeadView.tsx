@@ -1,9 +1,10 @@
 import React from 'react';
-import { Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, Box, Typography } from '@material-ui/core';
+import { Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Divider, Box, Typography, Button } from '@material-ui/core';
 import PlaceOutlined from '@material-ui/icons/PlaceOutlined';
 import CardTravelOutlined from '@material-ui/icons/CardTravelOutlined';
+import { WithStyles } from '@material-ui/core/styles';
+import styles from './styles';
 import NewLead from './NewLead';
-import Button from '@material-ui/core/Button';
 
 const acceptOrDeclineLead = async (acceptOrDecline: string, jobId: number) => {
     console.log('acceptLead called');
@@ -17,17 +18,19 @@ const acceptOrDeclineLead = async (acceptOrDecline: string, jobId: number) => {
     window.location.reload(false);
 };
 
-function NewLeadView(lead: NewLead) {
+function NewLeadView(lead: NewLead, props: WithStyles<typeof styles>) { 
+    const { classes } = props; 
+
     return(
         <Paper elevation={3}>
             <List>
                 <ListItem>
                     <ListItemAvatar>
-                        <Avatar>{lead.contactFirstName.charAt(0)}</Avatar>
+                        <Avatar className={classes.avatar}>{lead.contactFirstName.charAt(0)}</Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary={lead.contactFirstName} secondary={lead.dateCreated} />
-                    <Divider />
+                    <ListItemText primary={lead.contactFirstName} secondary={lead.dateCreated} />                    
                 </ListItem>
+                <Divider light/>
                 <ListItem>
                     <PlaceOutlined color='inherit'/>
                     <Box mr={3}><Typography>{lead.suburb}</Typography></Box>
@@ -37,11 +40,20 @@ function NewLeadView(lead: NewLead) {
                 </ListItem>
                 <Divider light/>
                 <ListItem>
-                    <Typography variant='body2' display='block' gutterBottom>{lead.description}</Typography>
+                    <Typography variant='body2' display='block' gutterBottom>{lead.description}</Typography>                    
                 </ListItem>
+                <Divider light/>
                 <ListItem>
-                    <Button onClick={() => acceptOrDeclineLead('accept', lead.jobId)}>Accept</Button>
-                    <Button onClick={() => acceptOrDeclineLead('decline', lead.jobId)}>Decline</Button>
+                    <Button 
+                        onClick={() => acceptOrDeclineLead('accept', lead.jobId)} 
+                        variant='contained' className={classes.acceptButton}>
+                            Accept
+                    </Button>
+                    <Button 
+                        onClick={() => acceptOrDeclineLead('decline', lead.jobId)} 
+                        variant='contained' className={classes.declineButton}>
+                            Decline
+                    </Button>
                     <Box ml={3}>{lead.price}</Box>
                 </ListItem>            
             </List>

@@ -4,19 +4,23 @@ import PlaceOutlined from '@material-ui/icons/PlaceOutlined';
 import CardTravelOutlined from '@material-ui/icons/CardTravelOutlined';
 import PhoneOutlined from '@material-ui/icons/PhoneOutlined';
 import EmailOutlined from '@material-ui/icons/EmailOutlined';
+import { WithStyles } from '@material-ui/core/styles';
+import styles from './styles';
 import AcceptedLead from './AcceptedLead';
 
-function AcceptedLeadView(lead: AcceptedLead) {
-    return(
+function AcceptedLeadView(lead: AcceptedLead, props: WithStyles<typeof styles>) {
+    const { classes } = props;
+
+    return(        
         <Paper elevation={3}>
             <List>
                 <ListItem>
                     <ListItemAvatar>
-                        <Avatar>{lead.contactFullName.charAt(0)}</Avatar>
+                        <Avatar className={classes.avatar}>{lead.contactFullName.charAt(0)}</Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary={lead.contactFullName} secondary={lead.dateCreated} />
-                    <Divider />
+                    <ListItemText primary={lead.contactFullName} secondary={lead.dateCreated} />                    
                 </ListItem>
+                <Divider light/>
                 <ListItem>
                     <PlaceOutlined color='inherit'/>
                     <Box mr={3}><Typography>{lead.suburb}</Typography></Box>
@@ -28,10 +32,11 @@ function AcceptedLeadView(lead: AcceptedLead) {
                 <Divider light/>                
                 <ListItem>
                     <PhoneOutlined color='inherit'/>
-                    <Box mr={3}>{lead.contactPhoneNumber}</Box>
+                    <Box mr={3}><Typography className={classes.contactInformation}>{lead.contactPhoneNumber}</Typography></Box>
                     <EmailOutlined color='inherit'/>
-                    <Box mr={3}>{lead.contactEmail}</Box>
+                    <Box mr={3}><Typography className={classes.contactInformation}>{lead.contactEmail}</Typography></Box>
                 </ListItem>
+                <Divider light/> 
                 <ListItem>
                     <Typography variant='body2' display='block' gutterBottom>{lead.description}</Typography>
                 </ListItem>
