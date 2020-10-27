@@ -10,43 +10,36 @@
     <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_LeadManagementService.-1663878613.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
-      <e p="LeadManagementService" t="IncludeRecursive">
-        <e p="appsettings.Development.json" t="Include" />
-        <e p="appsettings.json" t="Include" />
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="LeadManagementService.csproj" t="IncludeRecursive" />
-        <e p="Migrations" t="Include">
-          <e p="20201026214955_CreateLeadDocuments.cs" t="Include" />
-          <e p="20201026214955_CreateLeadDocuments.Designer.cs" t="Include" />
-          <e p="LeadDbContextModelSnapshot.cs" t="Include" />
-        </e>
-        <e p="NewLeads" t="Include">
-          <e p="AcceptLeadQuery.cs" t="Include" />
-          <e p="AcceptLeadQueryHandler.cs" t="Include" />
-          <e p="DeclineLeadQuery.cs" t="Include" />
-          <e p="DeclineLeadQueryHandler.cs" t="Include" />
-          <e p="GetAcceptedLeadQueryResponse.cs" t="Include" />
+      <e p="LeadManagementService.Api" t="IncludeRecursive">
+        <e p="AcceptedLeads" t="Include">
+          <e p="AcceptedLeadsController.cs" t="Include" />
           <e p="GetAcceptedLeadsQuery.cs" t="Include" />
           <e p="GetAcceptedLeadsQueryHandler.cs" t="Include" />
           <e p="GetAcceptedLeadsQueryResponse.cs" t="Include" />
-          <e p="GetNewLeadQueryResponse.cs" t="Include" />
+        </e>
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="LeadManagementService.Api.csproj" t="IncludeRecursive" />
+        <e p="Migrations" t="Include">
+          <e p="20201027015252_CreateLeadDocuments.cs" t="Include" />
+          <e p="20201027015252_CreateLeadDocuments.Designer.cs" t="Include" />
+          <e p="LeadDbContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="NewLeads" t="Include">
+          <e p="AcceptLeadCommand.cs" t="Include" />
+          <e p="AcceptLeadCommandHandler.cs" t="Include" />
+          <e p="DeclineLeadCommand.cs" t="Include" />
+          <e p="DeclineLeadCommandHandler.cs" t="Include" />
           <e p="GetNewLeadsQuery.cs" t="Include" />
           <e p="GetNewLeadsQueryHandler.cs" t="Include" />
           <e p="GetNewLeadsQueryResponse.cs" t="Include" />
-          <e p="InMemoryStorageMechanism.cs" t="Include" />
-          <e p="IStorageMechanism.cs" t="Include" />
-          <e p="Lead.cs" t="Include" />
-          <e p="LeadDbContext.cs" t="Include" />
-          <e p="LeadDocument.cs" t="Include" />
-          <e p="LeadsRepository.cs" t="Include" />
-          <e p="LeadStatus.cs" t="Include" />
           <e p="NewLeadsController.cs" t="Include" />
-          <e p="PostgresStorageMechanism.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="LeadManagementService.AssemblyInfo.cs" t="Include" />
+              <e p="LeadManagementService.Api.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -55,21 +48,80 @@
           <e p="launchSettings.json" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
+        <e p="WebHostExtensions.cs" t="Include" />
+      </e>
+      <e p="LeadManagementService.Data" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="IStorageMechanism.cs" t="Include" />
+        <e p="LeadDbContext.cs" t="Include" />
+        <e p="LeadDocumentSeeder.cs" t="Include" />
+        <e p="LeadManagementService.Data.csproj" t="IncludeRecursive" />
+        <e p="LeadsRepository.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="LeadManagementService.Data.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="PostgresStorageMechanism.cs" t="Include" />
+      </e>
+      <e p="LeadManagementService.Domain" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Lead.cs" t="Include" />
+        <e p="LeadDocument.cs" t="Include" />
+        <e p="LeadManagementService.Domain.csproj" t="IncludeRecursive" />
+        <e p="LeadStatus.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="LeadManagementService.Domain.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="LeadManagementService.Interfaces" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Data" t="Include">
+          <e p="ILeadsRepository.cs" t="Include" />
+        </e>
+        <e p="LeadManagementService.Interfaces.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="LeadManagementService.Interfaces.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="LeadManagementService.QueryResponses" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="GetAcceptedLeadQueryResponse.cs" t="Include" />
+        <e p="GetNewLeadQueryResponse.cs" t="Include" />
+        <e p="LeadManagementService.QueryResponses.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="LeadManagementService.QueryResponses.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
       </e>
       <e p="LeadManagementService.sln" t="IncludeFlat" />
-      <e p="LeadManagementServiceTests" t="IncludeRecursive">
+      <e p="LeadManagementService.Tests" t="IncludeRecursive">
         <e p="AcceptLeadTests.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="DeclineLeadTests.cs" t="Include" />
         <e p="GetAcceptedLeadsTests.cs" t="Include" />
         <e p="GetNewLeadsTests.cs" t="Include" />
-        <e p="LeadManagementServiceTests.csproj" t="IncludeRecursive" />
+        <e p="InMemoryStorageMechanism.cs" t="Include" />
+        <e p="LeadManagementService.Tests.csproj" t="IncludeRecursive" />
         <e p="LeadTests.cs" t="Include" />
         <e p="LocalTestServer.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="LeadManagementServiceTests.AssemblyInfo.cs" t="Include" />
+              <e p="LeadManagementService.Tests.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>

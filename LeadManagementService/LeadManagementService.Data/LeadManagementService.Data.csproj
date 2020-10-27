@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LeadManagementService.Domain\LeadManagementService.Domain.csproj" />
+      <ProjectReference Include="..\LeadManagementService.Interfaces\LeadManagementService.Interfaces.csproj" />
+      <ProjectReference Include="..\LeadManagementService.QueryResponses\LeadManagementService.QueryResponses.csproj" />
+    </ItemGroup>
+
+</Project>

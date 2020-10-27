@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>LeadManagementService</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LeadManagementService.Data\LeadManagementService.Data.csproj" />
+      <ProjectReference Include="..\LeadManagementService.Domain\LeadManagementService.Domain.csproj" />
+      <ProjectReference Include="..\LeadManagementService.Interfaces\LeadManagementService.Interfaces.csproj" />
+    </ItemGroup>
+
+</Project>
